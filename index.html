@@ -21,15 +21,16 @@
 html,body{height:100%;background:var(--ink);color:var(--white)}
 body{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 .page{position:relative;height:100vh;height:100dvh;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:calc(var(--u)*7);text-align:center;
   padding:calc(var(--u)*8 + env(safe-area-inset-top)) 16px calc(var(--u)*6 + env(safe-area-inset-bottom))}
 
 /* full-bleed bike: grain + dark scrim, as in the Number Board ad */
-.photo{position:absolute;inset:0;z-index:0}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:62% 72%;display:block;
+/* phones: photo anchored to the bottom so the bikes fill the space under the button */
+.photo{position:absolute;left:0;right:0;bottom:0;height:80%;z-index:0}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:58% 100%;display:block;
   filter:contrast(1.2) saturate(.6) brightness(.8) sepia(.15)}
 .photo::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(11,11,11,.85) 0%,rgba(11,11,11,.5) 36%,rgba(11,11,11,0) 54%,rgba(11,11,11,.1) 68%,rgba(11,11,11,.88) 100%)}
+  background:linear-gradient(180deg,rgba(11,11,11,1) 0%,rgba(11,11,11,.6) 22%,rgba(11,11,11,.35) 45%,rgba(11,11,11,.05) 70%,rgba(11,11,11,.35) 100%)}
 .photo::after{content:"";position:absolute;inset:0;z-index:2;opacity:.2;mix-blend-mode:overlay;
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2' seed='4'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>")}
 
@@ -44,17 +45,17 @@ h1 .plate{display:inline-flex;align-items:flex-end;background:var(--hi);color:va
 h1 .big{font-size:calc(var(--k)*21);line-height:.8;letter-spacing:-.02em;text-transform:none}
 h1 .small{font-size:calc(var(--k)*9.4);line-height:.86;margin-left:calc(var(--k)*1.8)}
 h1 .strip{display:block;margin:calc(var(--u)*5) auto 0;max-width:calc(var(--u)*92)}
-h1 .strip span{background:var(--ink);color:var(--white);font-size:calc(var(--u)*7.4);font-weight:800;line-height:1.32;
+h1 .strip span{background:var(--ink);color:var(--white);font-size:calc(var(--u)*8.8);font-weight:800;line-height:1.32;
   padding:calc(var(--u)*.3) calc(var(--u)*2.2);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 h1 em{font-style:normal;color:var(--hi)}
 
 .act{display:flex;flex-direction:column;align-items:center}
 .cta{display:flex;align-items:center;justify-content:center;gap:calc(var(--u)*3);width:100%;max-width:calc(var(--u)*92);min-height:48px;
   background:var(--wa);color:var(--ink);text-decoration:none;text-transform:uppercase;font-weight:900;text-align:left;
-  font-size:calc(var(--u)*7.4);line-height:1;padding:calc(var(--u)*4) calc(var(--u)*4)}
-.cta span{text-wrap:balance}
+  font-size:calc(var(--u)*7.4);line-height:1.02;padding:calc(var(--u)*4.4) calc(var(--u)*4)}
+.cta .nw{white-space:nowrap}
 .cta .arrow{width:calc(var(--u)*7);height:calc(var(--u)*7);color:var(--ink);margin-left:auto}
-.cta svg{flex:none;width:calc(var(--u)*11);height:calc(var(--u)*11);color:var(--white)}
+.cta svg{flex:none;width:calc(var(--u)*12);height:calc(var(--u)*12);color:var(--white)}
 .cta:active{background:var(--white)}
 .cta:focus-visible{outline:3px solid var(--white);outline-offset:3px}
 .count{display:inline-block;margin-top:calc(var(--u)*3);background:var(--ink);color:var(--white);
@@ -67,10 +68,12 @@ h1 em{font-style:normal;color:var(--hi)}
   :root{--u:min(.5vw,.8vh)}
   @supports (height:1dvh){:root{--u:min(.5vw,.8dvh)}}
   .page{justify-content:center;gap:calc(var(--u)*11);padding:48px}
+  .photo{top:0;height:auto}
   .photo img{object-position:50% 55%}
   .photo::before{background:radial-gradient(ellipse at 50% 50%,rgba(11,11,11,.55) 0%,rgba(11,11,11,.72) 55%,rgba(11,11,11,.9) 100%)}
   h1 .row{--k:var(--u)}
   h1 .strip{max-width:calc(var(--u)*160)}
+  h1 .strip span{font-size:calc(var(--u)*7.4)}
   .cta{width:auto;max-width:none;font-size:calc(var(--u)*6.4);padding:calc(var(--u)*3.4) calc(var(--u)*6)}
   .cta svg{width:calc(var(--u)*9.5);height:calc(var(--u)*9.5)}
   .cta .arrow{width:calc(var(--u)*7);height:calc(var(--u)*7);margin-left:calc(var(--u)*1)}
@@ -81,7 +84,7 @@ h1 em{font-style:normal;color:var(--hi)}
 <main class="page">
   <picture class="photo">
     <source media="(min-width:900px) and (min-aspect-ratio:1/1)" srcset="img/bike-wide.jpg" width="1216" height="1000">
-    <img src="img/bike.jpg" alt="Two black electric bikes parked on cardboard outside our shop" width="720" height="1018" fetchpriority="high">
+    <img src="img/bike.jpg" alt="Two black electric bikes parked on cardboard outside our shop" width="720" height="722" fetchpriority="high">
   </picture>
 
   <h1>
@@ -92,7 +95,7 @@ h1 em{font-style:normal;color:var(--hi)}
   <div class="act">
     <a class="cta" id="cta" href="https://chat.whatsapp.com/LCAzwJiTjyR0hle8yjyfjm" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      <span>Join our WhatsApp group to book a test ride</span>
+      <span><span class="nw">Join our WhatsApp</span> <span class="nw">group to book</span> <span class="nw">a test ride</span></span>
       <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5h12.2l-4.6-4.6 2.1-2.1L21 12l-8.3 8.2-2.1-2.1 4.6-4.6H3z" fill="currentColor"/></svg>
     </a>
     <p class="count" id="count" role="status" aria-live="polite" hidden>Taking you to WhatsApp in <b id="n">10</b>…</p>
