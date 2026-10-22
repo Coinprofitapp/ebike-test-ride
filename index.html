@@ -21,7 +21,7 @@
 html,body{height:100%;background:var(--ink);color:var(--white)}
 body{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 .page{position:relative;height:100vh;height:100dvh;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:calc(var(--u)*7);text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:calc(var(--u)*9);text-align:center;
   padding:calc(var(--u)*8 + env(safe-area-inset-top)) 16px calc(var(--u)*6 + env(safe-area-inset-bottom))}
 
 /* full-bleed bike: grain + dark scrim, as in the Number Board ad */
@@ -37,15 +37,16 @@ body{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;overfl
 h1,.act{position:relative;z-index:3;width:100%}
 h1{font-weight:800;text-transform:uppercase;line-height:1}
 /* headline on one line: SAVE OVER [₦4m IN 5 YEARS] */
-/* --k scales the whole lockup; .72 makes it fit a 360px phone on one line */
-h1 .row{--k:calc(var(--u)*.745);display:flex;justify-content:center;white-space:nowrap}
-h1 .lead{font-size:calc(var(--k)*9.4);line-height:.86;margin-right:calc(var(--k)*2)}
-h1 .plate{display:inline-flex;align-items:flex-end;background:var(--hi);color:var(--ink);font-weight:900;
-  padding:calc(var(--k)*1.8) calc(var(--k)*2.6) calc(var(--k)*1) calc(var(--k)*2.4)}
-h1 .big{font-size:calc(var(--k)*21);line-height:.8;letter-spacing:-.02em;text-transform:none}
-h1 .small{font-size:calc(var(--k)*9.4);line-height:.86;margin-left:calc(var(--k)*1.8)}
-h1 .strip{display:block;margin:calc(var(--u)*5) auto 0;max-width:calc(var(--u)*92)}
-h1 .strip span{background:var(--ink);color:var(--white);font-size:calc(var(--u)*8.8);font-weight:800;line-height:1.32;
+/* headline plate on two lines: SAVE OVER / ₦4m IN 5 YEARS; --k scales the whole lockup */
+h1 .row{--k:calc(var(--u)*.86);display:flex;justify-content:center;white-space:nowrap}
+h1 .plate{display:inline-flex;flex-direction:column;align-items:center;background:var(--hi);color:var(--ink);font-weight:900;
+  padding:calc(var(--k)*3) calc(var(--k)*4.5) calc(var(--k)*1.6)}
+h1 .lead{font-size:calc(var(--k)*10.5);line-height:.86;letter-spacing:.02em}
+h1 .l2{display:flex;align-items:flex-end;margin-top:calc(var(--k)*1)}
+h1 .big{font-size:calc(var(--k)*27);line-height:.8;letter-spacing:-.02em;text-transform:none}
+h1 .small{font-size:calc(var(--k)*10.5);line-height:.86;margin-left:calc(var(--k)*2.2)}
+h1 .strip{display:block;margin:calc(var(--u)*8) auto 0;max-width:calc(var(--u)*92)}
+h1 .strip span{background:var(--ink);color:var(--white);font-size:calc(var(--u)*7);font-weight:800;line-height:1.36;
   padding:calc(var(--u)*.3) calc(var(--u)*2.2);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 h1 em{font-style:normal;color:var(--hi)}
 
@@ -71,7 +72,7 @@ h1 em{font-style:normal;color:var(--hi)}
   .photo{top:0;height:auto}
   .photo img{object-position:50% 55%}
   .photo::before{background:radial-gradient(ellipse at 50% 50%,rgba(11,11,11,.55) 0%,rgba(11,11,11,.72) 55%,rgba(11,11,11,.9) 100%)}
-  h1 .row{--k:var(--u)}
+  h1 .row{--k:calc(var(--u)*.85)}
   h1 .strip{max-width:calc(var(--u)*160)}
   h1 .strip span{font-size:calc(var(--u)*7.4)}
   .cta{width:auto;max-width:none;font-size:calc(var(--u)*6.4);padding:calc(var(--u)*3.4) calc(var(--u)*6)}
@@ -88,7 +89,7 @@ h1 em{font-style:normal;color:var(--hi)}
   </picture>
 
   <h1>
-    <span class="row"><span class="plate"><span class="lead">Save over</span> <span class="big">₦4m</span> <span class="small">in 5 years</span></span></span>
+    <span class="row"><span class="plate"><span class="lead">Save over</span> <span class="l2"><span class="big">₦4m</span> <span class="small">in 5 years</span></span></span></span>
     <span class="strip"><span>with our original electric bike with lithium ion battery that can go up to <em>100km</em> in 1 full charge</span></span>
   </h1>
 
